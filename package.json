@@ -4,9 +4,13 @@
   "private": true,
   "engines": {
     "node": "20.x",
-    "npm": ">=6.14.4"
+    "npm": ">=6.14.4 <10.0.0"
   },
   "scripts": {
+    "build": "NODE_OPTIONS=--openssl-legacy-provider npm run build-server && npm run build",
+    "build-server": "npm run clean-server && npm run transpile-server",
+    "clean-server": "npx rimraf build && mkdir build",
+    "transpile-server": "babel --route --config-file ./server/.babelrc ./server --out-dir ./build --copy-files --source-maps",
     "dev:node": "npx cross-env NODE_ENV=development nodemon --exec ./node_modules/.bin/babel-node server.js --route ./server/.babelrc",
     "server:prod": "npx cross-env NODE_ENV=production node server.js",
     "serve": "vue-cli-service serve",
@@ -17,9 +21,6 @@
     "test:unit": "vue-cli-service test:unit",
     "ndb": "ndb npm run dev:node",
     "format": "eslint --fix",
-    "clean-server": "npx rimraf build && mkdir build",
-    "transpile-server": "babel --route --config-file ./server/.babelrc ./server --out-dir ./build --copy-files --source-maps",
-    "build-server": "npm run clean-server && npm run transpile-server",
     "lint:css": "stylelint '**/*.vue' --syntax scss"
   },
   "dependencies": {
@@ -64,8 +65,9 @@
     "eslint-plugin-import": "^2.18.2",
     "lint-staged": "^8.1.6",
     "ndb": "^1.1.5",
-    "sass": "^1.67.0",
-    "sass-loader": "^10.1.1",
+    "node-sass": "^4.14.1",
+    "nodemon": "^1.18.4",
+    "sass-loader": "^7.0.1",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-processor-html": "^1.0.0",
