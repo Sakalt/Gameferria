@@ -9,7 +9,7 @@ module.exports = {
         shared: path.resolve(__dirname, 'server/shared'),
         root: path.resolve(__dirname, process.env.NODE_ENV === 'production' ? 'build/' : 'server/'),
       },
-      extensions: ['.js'],
+      // extensions: ['.js', '.vue', '.json'], // この行を省略
     },
   },
 };
