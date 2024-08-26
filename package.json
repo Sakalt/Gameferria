@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "20.x",
-    "npm": "~6.14.4"
+    "npm": ">=6.14.4 <10.0.0"
   },
   "scripts": {
     "dev:node": "npx cross-env NODE_ENV=development nodemon --exec ./node_modules/.bin/babel-node server.js --route ./server/.babelrc",
@@ -79,7 +79,7 @@
   ],
   "nodemonConfig": {
     "env": {
-      "SITE_URL": "http://gameferria.com"
+      "SITE_URL": "http://rpg.com"
     }
   },
   "gitHooks": {
